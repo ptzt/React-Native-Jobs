@@ -17,47 +17,47 @@ const JobSearch = () => {
     const [searchError, setSearchError] = useState(null);
     const [page, setPage] = useState(1);
 
-    const handleSearch = async () => {
-        setSearchLoader(true);
-        setSearchResult([])
+    // const handleSearch = async () => {
+    //     setSearchLoader(true);
+    //     setSearchResult([])
 
-        try {
-            const options = {
-                method: "GET",
-                url: `https://jsearch.p.rapidapi.com/search`,
-                headers: {
-                    "X-RapidAPI-Key": 'a64fc27863mshcbf778da4931166p14acdfjsnda0359832e1c',
-                    "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-                },
-                params: {
-                    query: params.id,
-                    page: page.toString(),
-                },
-            };
+    //     try {
+    //         const options = {
+    //             method: "GET",
+    //             url: `https://jsearch.p.rapidapi.com/search`,
+    //             headers: {
+    //                 "X-RapidAPI-Key": 'a64fc27863mshcbf778da4931166p14acdfjsnda0359832e1c',
+    //                 "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
+    //             },
+    //             params: {
+    //                 query: params.id,
+    //                 page: page.toString(),
+    //             },
+    //         };
 
-            const response = await axios.request(options);
-            setSearchResult(response.data.data);
-        } catch (error) {
-            setSearchError(error);
-            console.log(error);
-        } finally {
-            setSearchLoader(false);
-        }
-    };
+    //         const response = await axios.request(options);
+    //         setSearchResult(response.data.data);
+    //     } catch (error) {
+    //         setSearchError(error);
+    //         console.log(error);
+    //     } finally {
+    //         setSearchLoader(false);
+    //     }
+    // };
 
-    const handlePagination = (direction) => {
-        if (direction === 'left' && page > 1) {
-            setPage(page - 1)
-            handleSearch()
-        } else if (direction === 'right') {
-            setPage(page + 1)
-            handleSearch()
-        }
-    }
+    // const handlePagination = (direction) => {
+    //     if (direction === 'left' && page > 1) {
+    //         setPage(page - 1)
+    //         handleSearch()
+    //     } else if (direction === 'right') {
+    //         setPage(page + 1)
+    //         handleSearch()
+    //     }
+    // }
 
-    useEffect(() => {
-        handleSearch()
-    }, [])
+    // useEffect(() => {
+    //     handleSearch()
+    // }, [])
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -84,7 +84,7 @@ const JobSearch = () => {
                         handleNavigate={() => router.push(`/job-details/${item.job_id}`)}
                     />
                 )}
-                keyExtractor={(item) => item.job_id}
+                keyExtractor={(item) => item.id}
                 contentContainerStyle={{ padding: SIZES.medium, rowGap: SIZES.medium }}
                 ListHeaderComponent={() => (
                     <>
